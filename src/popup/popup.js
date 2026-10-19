@@ -345,6 +345,12 @@
     },
     reverseLines: function (s) {
       return s.split(/\r\n|\r|\n/).reverse().join("\n");
+    },
+    collapseSpaces: function (s) {
+      return s.replace(/\s+/g, " ").trim();
+    },
+    stripTags: function (s) {
+      return s.replace(/<\/?[a-zA-Z0-9#.-:_=\s"']*>/g, "").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
     }
   };
 
