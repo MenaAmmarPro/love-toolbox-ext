@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Love Toolbox</title>
+  <link rel="stylesheet" href="../common/theme.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="tb-head">
+    <span class="tb-title">♥ Love Toolbox</span>
+    <span class="tb-sub">little helpers for two</span>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Tools">
+    <button class="tab is-active" type="button" role="tab" data-tab="calc" aria-selected="true">Calc</button>
+    <button class="tab" type="button" role="tab" data-tab="notes" aria-selected="false">Notes</button>
+    <button class="tab" type="button" role="tab" data-tab="convert" aria-selected="false">Convert</button>
+    <button class="tab" type="button" role="tab" data-tab="text" aria-selected="false">Text</button>
+  </nav>
+
+  <main class="tb-main">
+    <section class="panel" data-panel="calc" role="tabpanel" aria-label="Calculator">
+      <p class="calc-history" id="calc-history">&nbsp;</p>
+      <div class="calc-display" id="calc-display">0</div>
+      <div class="calc-keys" id="calc-keys">
+        <button type="button" class="key fn" data-key="(">(</button>
+        <button type="button" class="key fn" data-key=")">)</button>
+        <button type="button" class="key fn" data-key="^">^</button>
+        <button type="button" class="key fn" data-key="/">÷</button>
+        <button type="button" class="key" data-key="7">7</button>
+        <button type="button" class="key" data-key="8">8</button>
+        <button type="button" class="key" data-key="9">9</button>
+        <button type="button" class="key fn" data-key="*">×</button>
+        <button type="button" class="key" data-key="4">4</button>
+        <button type="button" class="key" data-key="5">5</button>
+        <button type="button" class="key" data-key="6">6</button>
+        <button type="button" class="key fn" data-key="-">−</button>
+        <button type="button" class="key" data-key="1">1</button>
+        <button type="button" class="key" data-key="2">2</button>
+        <button type="button" class="key" data-key="3">3</button>
+        <button type="button" class="key fn" data-key="+">+</button>
+        <button type="button" class="key fn" data-key="sqrt(">√</button>
+        <button type="button" class="key" data-key="0">0</button>
+        <button type="button" class="key" data-key=".">.</button>
+        <button type="button" class="key ok" data-key="=">=</button>
+        <button type="button" class="key fn" data-key="%">%</button>
+        <button type="button" class="key fn" data-key="back">⌫</button>
+        <button type="button" class="key danger" data-key="clear" style="grid-column: span 2">Clear</button>
+      </div>
+      <p class="hint">Safe parser — supports + − × ÷ % ^, parentheses and sqrt/sin/cos/log/π.</p>
+    </section>
+
+    <section class="panel" data-panel="notes" role="tabpanel" aria-label="Quick notes" hidden>
+      <textarea id="note-input" class="field" rows="3" placeholder="Write a quick note…"></textarea>
+      <div class="row">
+        <button id="note-add" type="button" class="btn primary">Add note</button>
+        <span class="hint">Ctrl+Enter to save</span>
+      </div>
+      <ul id="notes-list" class="note-list"></ul>
+    </section>
+
+    <section class="panel" data-panel="convert" role="tabpanel" aria-label="Unit converter" hidden>
+      <label class="lbl" for="conv-category">Category</label>
+      <select id="conv-category" class="field">
+        <option value="length">Length</option>
+        <option value="mass">Mass</option>
+        <option value="temperature">Temperature</option>
+      </select>
+
+      <label class="lbl" for="conv-value">Value</label>
+      <input id="conv-value" class="field" type="text" inputmode="decimal" value="1">
+
+      <div class="conv-row">
+        <div>
+          <label class="lbl" for="conv-from">From</label>
+          <select id="conv-from" class="field"></select>
+        </div>
+        <button id="conv-swap" type="button" class="btn ghost swap" aria-label="Swap units">⇄</button>
+        <div>
+          <label class="lbl" for="conv-to">To</label>
+          <select id="conv-to" class="field"></select>
+        </div>
+      </div>
+
+      <div class="result" id="conv-result">—</div>
+      <button id="conv-copy" type="button" class="btn ghost">Copy result</button>
+    </section>
+
+    <section class="panel" data-panel="text" role="tabpanel" aria-label="Text tools" hidden>
+      <textarea id="text-input" class="field" rows="4" placeholder="Paste or type text…"></textarea>
+      <div class="tools" id="text-tools"></div>
+      <textarea id="text-output" class="field" rows="4" placeholder="Result appears here…" readonly></textarea>
+      <div class="row">
+        <span class="hint" id="text-stats"></span>
+        <button id="text-copy" type="button" class="btn ghost">Copy</button>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="../common/api.js"></script>
+  <script src="../common/data.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
