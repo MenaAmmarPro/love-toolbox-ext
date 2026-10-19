@@ -62,6 +62,8 @@
     { id: "camel", label: "camelCase" },
     { id: "snake", label: "snake_case" },
     { id: "kebab", label: "kebab-case" },
+    { id: "collapseSpaces", label: "Collapse spaces" },
+    { id: "stripTags", label: "Strip HTML tags" },
     { id: "reverse", label: "Reverse" },
     { id: "trimLines", label: "Trim lines" },
     { id: "removeEmpty", label: "Drop empty lines" },
