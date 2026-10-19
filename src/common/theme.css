@@ -1,0 +1,47 @@
+/* love-toolbox-ext — shared theme tokens (small, self-contained) */
+
+:root {
+  color-scheme: dark;
+  --bg: #090b20;
+  --bg-soft: #12162f;
+  --panel: #161b38;
+  --text: #f5f2ff;
+  --muted: #b9bbd5;
+  --pink: #ff9fcf;
+  --pink-strong: #ff72b8;
+  --purple: #bba6ff;
+  --line: rgba(219, 212, 255, 0.16);
+  --ok: #9dffb0;
+  --danger: #ff8ba0;
+  --shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  width: 360px;
+  min-height: 420px;
+  background:
+    radial-gradient(ellipse at 50% 0%, #1a1d43 0%, transparent 60%),
+    var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--pink);
+  outline-offset: 2px;
+}
