@@ -223,6 +223,8 @@ eq(NS.applyTextTool("removeEmpty", "a\n\nb\n"), "a\nb", "drop empty lines");
 eq(NS.applyTextTool("dedupe", "a\nb\na\nb"), "a\nb", "unique lines");
 eq(NS.applyTextTool("sortLines", "c\na\nb"), "a\nb\nc", "sort lines");
 eq(NS.applyTextTool("reverseLines", "a\nb"), "b\na", "reverse lines");
+eq(NS.applyTextTool("collapseSpaces", "  a   b\n c "), "a b c", "collapse spaces");
+eq(NS.applyTextTool("stripTags", "<b>hi</b> <i>x</i>"), "hi x", "strip html tags");
 eq(NS.applyTextTool("nope", "unchanged"), "unchanged", "unknown tool is a no-op");
 
 const stats = NS.textStats("one two\nthree");
