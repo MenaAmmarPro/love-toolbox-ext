@@ -462,6 +462,29 @@
       } else { expression += key; }
       paint();
     });
+    if (display) {
+      display.setAttribute("tabindex", "0");
+      display.setAttribute("contenteditable", "false");
+      display.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" || event.key === "=") {
+          if (event.preventDefault) event.preventDefault();
+          var result = calcSafe(expression);
+          if (result.ok) {
+            if (historyEl) historyEl.textContent = expression + " =";
+            expression = formatNumber(result.value);
+          } else if (historyEl) {
+            historyEl.textContent = "error: " + result.error;
+          }
+          paint();
+        } else if (event.key === "Escape") {
+          expression = ""; if (historyEl) historyEl.textContent = ""; paint();
+        } else if (event.key === "Backspace") {
+          expression = expression.slice(0, -1); paint();
+        } else if (/^[0-9+\-*/^().%]$/.test(event.key)) {
+          expression += event.key; paint();
+        }
+      });
+    }
     paint();
   }
 
@@ -523,6 +546,15 @@
     }
 
     addBtn.addEventListener("click", function () { commit(input.value); });
+    var clearBtn = document.getElementById("note-clear");
+    if (clearBtn) {
+      clearBtn.addEventListener("click", function () {
+        if (!notes.length) return;
+        notes = [];
+        saveNotes(notes, render);
+        toast("Cleared");
+      });
+    }
     input.addEventListener("keydown", function (event) {
       if (event.key === "Enter" && (event.ctrlKey || event.metaKey)) { commit(input.value); }
     });
